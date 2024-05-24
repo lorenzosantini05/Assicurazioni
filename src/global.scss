@@ -1,0 +1,112 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+@import "primeicons/primeicons.css";
+
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+:root{
+    --sfondo: #e6e6e6;
+    --bianco: #f2f2f2;
+    --op1: color-mix(in hsl, #000 25%, transparent);
+    --durata-transizione: .5s;
+    --accento: #245c73
+}
+
+html{
+    font-size: 18px;
+}
+
+*:not(.p-menu-overlay, .p-menu-overlay *, p-menu, p-menu *, dialog, p-calendar, p-calendar *){
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    a:not(.p-menuitem-link){
+        cursor: pointer;
+        text-decoration: underline;
+        color: var(--accento);
+        transition: all var(--durata-transizione) cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        -webkit-box-shadow: 0 0 0 30px var(--sfondo) inset !important;
+        caret-color: transparent;
+    }
+
+    input:-webkit-autofill{
+        -webkit-text-fill-color:  #000 !important;
+        font-size: inherit;
+        font-weight: inherit;
+    }
+
+    a:hover{
+        filter: drop-shadow(0 0 1.5rem var(--accento));
+    }    
+
+}
+
+.flex-row, .flex-col{
+    display: flex;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.jc-c{
+    justify-content: center;
+}
+
+.al-c{
+    align-items: center;
+}
+
+.logo{
+    user-select: none;
+    caret-color: transparent;
+}
+
+.nascosto{
+    opacity: 0;
+}
+
+.transizione{
+    transition: all var(--durata-transizione) cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.controlla-width{
+    width: auto !important;
+    position: absolute !important;
+    transform: scaleY(0) !important;
+    opacity: 0 !important;
+}
+
+.p-menu.p-menu-overlay{
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+}

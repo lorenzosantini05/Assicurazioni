@@ -1,0 +1,24 @@
+:host{
+    padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    min-height: 100dvh;
+}
+
+AsideComponent{
+    width: max(20rem, 15dvw);
+}
+
+.wrapper{
+    position: relative;
+    flex-grow: 1;
+}
+
+
+@media screen and (max-aspect-ratio: 0.6){
+    :host{ 
+        flex-direction: column !important;
+    }
+}

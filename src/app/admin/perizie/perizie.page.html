@@ -1,0 +1,59 @@
+  <div id="wrapper" class="flex-col">
+    <header class="flex-row">
+      <div class="flex-col">
+        <h1>Perizie</h1>
+        <p>Visualizza e modifica perizie</p>
+      </div>
+      <button class="accento flex-row jc-c al-c" (click)="vuoleCrearePerizia = true">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </header>
+    <google-map id="mappa"
+      [mapId]="'1436edaa72ee3004'"
+      [options]="{
+        'center': mapService.center,
+        'zoom': 10,
+        'fullscreenControl': false,
+        'zoomControlOptions': {
+          'position': maps.ControlPosition.LEFT_TOP
+        },
+        'streetViewControl': true,
+        'streetViewControlOptions': {
+          'position': maps.ControlPosition.LEFT_TOP
+        }
+      }"
+    >
+    @for (p of mapService.perizieFiltrate; track $index) {
+      <map-advanced-marker 
+        [position]="p.luogo.coordinate"
+        [content]="mapService.StileMarker(p)"
+        (mapClick)="ApriPerizia(p)"
+      />
+    }
+  </google-map>
+    <Filtri/>
+</div>
+
+@if(periziaSelezionata){
+  <ModaleSiNo
+    #modaleElimina
+    colore="#245c73"
+    icona="help-circle"
+    si="Continua"
+    messaggio="Si aprirà una nuova pagina"
+    [titolo]="'Visualizzare perizia #' + periziaSelezionata.codice + '?'"
+    [style]="{'position':'absolute'}"
+    (onNo)="ChiudiElimina(modaleElimina)"
+    (onSi)="NuovaPaginaPerizia(modaleElimina)"
+  />
+}
+
+@if(vuoleCrearePerizia){
+  <CreaPeriziaModale
+    [operatori]="mapService.utenti"
+    [perizie]="mapService.perizie"
+    [caricamento]="caricamentoAggiungi"
+    (onChiudi)="vuoleCrearePerizia = false"
+    (onAggiungi)="AggiungiPerizia($event)"
+  />
+}

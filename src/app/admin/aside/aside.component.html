@@ -1,0 +1,74 @@
+<div id="wrapperHead" class="flex-row jc-c al-c">
+  <img src="assets/login/logo.jpg">
+  <span>Assicurazioni</span>
+</div>
+<div id="wrapperAside" class="flex-col" #opzioni>
+  <div 
+    class="cella posizione-{{routerLink.indexOf(RimuoviParametri(window.location.pathname))}}"
+  >
+    <ion-icon name="person" />
+    <span>Home</span>
+  </div>
+  @for (voce of elencoVoci; track $index) {
+    <VoceAside 
+      routerLinkActive="selezionata"
+      [routerLink]="routerLink[$index]"
+      [voce]="voce" 
+      [icon]="elencoIcons[$index]" 
+      [notification]="elencoNotifications[$index]"
+    />
+  }
+</div>
+<div class="wrapper-logout flex-row">
+  @if(admin.utente)
+  {
+    @if(admin.utente.pfp){
+      <img [src]="admin.utente.pfp">
+    }
+    @else {
+      <ImmagineProfileDefault [nome]="admin.utente.cognome"/>
+    }
+  }
+  @else {
+    <div class="img" loader></div>
+  }
+  <div class="flex-col jc-c">
+    @if(admin.utente){
+      <h6>{{ admin.utente["nome"] }} {{ admin.utente["cognome"] }}</h6>
+      <p>&commat;{{ admin.utente["username"] }}</p>
+    }
+    @else {
+      <h6 loader style="margin-bottom: .25rem;">Nome Cognome</h6>
+      <p loader style="width: 50%;">&commat;nome_utente</p>
+    }
+  </div>
+  <button 
+    type="button" 
+    class="flex-row al-c jc-c"
+    [style]="{'pointer-events' : admin.utente ? 'all' : 'none'}" 
+    (click)="menu.toggle($event)" 
+    [@appari]
+  >
+    <p-menu 
+    #menu 
+    [model]="[opzioneLogout]" 
+    [popup]="true"
+    appendTo="body"
+    >
+  </p-menu>
+    <ion-icon name="ellipsis-vertical"></ion-icon>
+  </button>
+</div>
+@if(vuoleUscire){
+  <ModaleSiNo
+    #modaleElimina
+    colore="#eb4e4e"
+    si="Esci"
+    titolo="Uscire dall'account?"
+    messaggio="Dovrai effettuare nuovamente il login"
+    [style]="{'position':'absolute'}"
+    [inCaricamento]="inCaricamento"
+    (onNo)="ChiudiElimina(modaleElimina)"
+    (onSi)="Logout()"
+  />
+}

@@ -1,0 +1,29 @@
+<div class="wrapper flex-col">
+  <header class="flex-col">
+    <h1>Home</h1>
+    <p>Pagina principale</p>
+  </header>
+  <div class="grid">
+    <div class="cella flex-col jc-c">
+      <h1 class="flex-col">
+        <span style="color: var(--accento);">
+          Bentornato,
+        </span>
+          @if(admin.utente){
+            {{ admin.utente.nome }}
+          }
+          @else{ 
+            <div loader>NomeUser</div>
+          }
+        </h1>
+      <p> Portale admin Rilievi & Perizie</p>
+    </div>
+    @if(configGrafici){
+      <GraficoBarre [dati]="configGrafici['utenti']"/>
+      <GraficoLinea [dati]="configGrafici['perizie']"/>
+    }@else {
+      <div class="cella cella-1" loader grande></div>
+      <div class="cella cella-2" loader grande></div>
+    }
+    <Utenti/>
+</div>

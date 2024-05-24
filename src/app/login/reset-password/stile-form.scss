@@ -1,0 +1,26 @@
+:host{
+    position: relative !important;
+}
+
+form{
+    --max-width: initial;
+    border-radius: var(--br);
+    flex-grow: 1;
+    color: #000;
+    padding: 2rem 6rem;
+    background-color: #FFF;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap);
+    width: var(--max-width);
+}
+
+@media screen and (max-aspect-ratio: .8) {
+    :host{
+
+        form{
+            padding: 2rem;
+    
+        }
+    }  
+}

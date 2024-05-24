@@ -1,0 +1,64 @@
+:host{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 1.5rem;
+}
+
+#wrapper{
+  position: relative;
+  height: 100%;
+  flex-grow: 1;
+  gap: 1rem;
+  padding: 2rem;
+
+  header{
+    margin-bottom: 1rem;
+    justify-content: space-between;
+
+    h1{
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      margin-bottom: 0;
+    }
+  
+    p{
+      font-size: 0.9rem;
+      color: #CCC;
+    }
+
+    button.accento{
+      background-color: var(--accento);
+      color: white;
+      aspect-ratio: 1;
+      border-radius: .5rem;
+      font-size: 2rem;
+      height: 100%;
+
+    }
+  }
+}
+
+#mappa::ng-deep{
+  overflow: hidden;
+  border-radius: 1rem;
+  flex-grow: 1;
+  border: 2px solid #CCC;
+
+  .map-container{
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+@media screen and (max-aspect-ratio: .5){
+  :host{
+      padding-block: 2rem;
+      & > #wrapper{
+          padding-block: 0;
+      }
+  }
+}

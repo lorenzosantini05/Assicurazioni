@@ -1,0 +1,266 @@
+:host{
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+} 
+
+:host > .icona{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    top: -10%;
+    
+    span{
+        box-shadow: 0 0 .5rem #CCC;
+        width: 4.5rem;
+        height: 4.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: white;
+        z-index: 10;
+
+        ion-icon{
+            font-size: 2rem;
+        }
+    }
+}
+
+.wrapper{
+    gap: 1rem;
+
+    & > .flex-col{
+        gap: 1rem;
+        min-width: 50%;
+    }
+    
+    .cella-filtro{
+        width: 50%;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: solid 1px #CCC;
+        width: 100%;
+        gap: 1rem;
+    }
+}
+
+.filterDiv{
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 100%;
+    position: relative;
+    gap: 1rem;
+}
+
+hr{
+    height: 1px;
+    background-color: #CCC;
+}
+
+
+.filterDiv > div:nth-child(1){
+    width: 100%;
+    height: 15%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accento);
+    font-weight: bold;
+}
+
+.cont-filtri{
+    position: relative;
+    width: 100%;
+    gap: .5rem;
+
+    Dropdown{
+        width: 100%;
+        min-width: 10ch;
+    }
+}
+
+.cont-radio{
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    RadioButton{
+        flex-grow: 1;
+    }
+
+    & > RadioButton:last-child{
+        width: 100%;
+    }
+}
+
+.lbl{
+    font-size: 1rem;
+    color: var(--accento);
+    width: 100%;
+    font-weight: bold;
+}
+
+.cella-filtro{
+
+    .flex-row{
+        gap: 1rem;
+
+        p-calendar{
+            flex-grow: 1;
+        }
+
+        button{
+            padding-inline: .75rem;
+            background-color: var(--accento);
+            color: #FFF;
+            font-size: 1.2rem;
+            border-radius: .25rem;
+            display: grid;
+            place-items: center;
+            transition: opacity .3s ease;
+
+            &:disabled{
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+
+#wrapperFiltriGenere{
+    gap: .5rem;
+
+    & > div:nth-child(2){
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        gap: 1rem;
+        flex-direction: row;
+        
+        RadioButton{
+            flex-grow: 1;
+
+            &:last-child{
+                width: 100%;
+            }
+        }
+    }
+
+    .cont-radio{
+        flex-wrap: wrap;
+    }
+}
+
+#wrapperOperatoriSelezionati{
+    border-radius: 0.5rem;
+    border: solid 1px #CCC;
+    flex-grow: 1;
+    
+    padding: 1rem;
+    overflow-y: auto;
+    gap: 0.5rem;
+    height: 3rem;
+
+    & > .flex-row{
+        flex-wrap: wrap;
+    }
+}
+
+.loader-dropdown{
+    height: 2.25rem;
+    background-color: red;
+    border-radius: .5rem;
+    --grigio: #EEE;
+    background-color: var(--grigio);
+    position: relative;
+    overflow: hidden;
+    
+    &::before{
+        content: ' ';
+        position: absolute;
+        z-index: 1;
+        transform: translateY(-50%) rotateZ(.1turn);
+        top: 0;
+        bottom: 0;
+        height: 200%;
+        width: 1rem;
+        background-color: color-mix(in srgb, var(--grigio) 75%, #000 25%);
+        left: -200%;
+        animation: caricamento 1s infinite linear;
+        filter: blur(1rem);
+    }
+
+    @keyframes caricamento{
+        0%{
+            left: -200%;
+        }
+        100%{
+            left: 200%;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: .75rem;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 100vh;
+    background-color: var(--accento);
+}
+
+#wrapperFiltroData{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 0.5rem;    
+}
+#wrapperInd{
+    width: 70%;
+    left: 15%;
+    height: 10%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.no-utente{
+    color: #AAA;
+    font-size: 1;
+}
+
+@media screen and (max-aspect-ratio: .5){
+    :host{
+        & > .wrapper{
+            flex-direction: column !important;
+        
+            .cont-radio{
+                flex-wrap: nowrap;
+
+                & > RadioButton:last-child{
+                    width: unset !important;
+                }
+            }
+
+            #wrapperOperatoriSelezionati{
+                padding: 0.5rem;
+            }
+        }
+    }
+
+}

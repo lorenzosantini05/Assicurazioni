@@ -1,0 +1,69 @@
+
+<h1>Filtri</h1>
+    
+<div class="wrapper flex-row">
+
+  <div class="flex-col">
+
+    <div class="cella-filtro flex-col">
+      <div class="lbl">
+        Data
+      </div>
+      <div class="flex-row">
+        <p-calendar 
+        class="abilitato"
+        dateFormat="dd/mm/yy" 
+        selectionMode="range" 
+        [(ngModel)]="rangeDates" 
+        [iconDisplay]="'input'" 
+        [showIcon]="true" 
+        (onClose)="datePicked()">
+      </p-calendar>
+      <button class="accento" [disabled]="!rangeDates ||!this.rangeDates.length" (click)="this.rangeDates = mapService.pickedDates = []; mapService.FiltraPerizie()">
+        <ion-icon name="close"/>
+      </button>
+      </div>
+    </div>
+  
+    <div class="cella-filtro flex-col">
+      <div class="lbl">Gender</div>
+      <div class="cont-radio flex-row">
+        @for (gender of ['Maschio', 'Femmina', 'Tutti']; track $index){
+          <RadioButton [label]="gender" />
+        }
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cella-filtro flex-col">
+    <div class="lbl">Utente</div>
+    @if(operatori){
+      <DropdownMultiplo
+        class="abilitato"
+        icona="person"
+        [opzioni]="operatori"
+        [(ngModel)]="mapService.utentiFiltrati"
+        (ngModelChange)="mapService.FiltraPerizie()"
+      />
+    }
+    @else {
+      <div class="loader-dropdown"></div>
+    }
+    <div id="wrapperOperatoriSelezionati">
+      <div class="wrapper flex-row">
+        @if(UtentiSelezionati().length){
+          @for (operatore of UtentiSelezionati(); track $index){
+            <UtenteSelezionato 
+              [selection]="operatore" 
+              (selectionRemoved)="onSelectionRemoved(operatore)"
+            ></UtenteSelezionato>
+          }
+        }
+        @else{
+          <div class="no-utente">Nessun utente selzionato</div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
